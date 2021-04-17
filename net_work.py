@@ -68,8 +68,6 @@ class Attention(Layer):
                 return inputs - (1 - mask) * 1e12
 
     def call(self, x):
-        # 如果只传入Q_seq,K_seq,V_seq，那么就不做Mask
-        # 如果同时传入Q_seq,K_seq,V_seq,Q_len,V_len，那么对多余部分做Mask
         if len(x) == 3:
             Q_seq, K_seq, V_seq = x
             Q_len, V_len = None, None
